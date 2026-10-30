@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}CampusShop{% endblock %} · CampusShop</title>
+  <link rel="stylesheet" href="/static/estilos.css">
+</head>
+<body>
+  <header class="barra">
+    <a class="marca" href="/">Campus<span>Shop</span></a>
+    <form class="buscador" action="/buscar" method="get">
+      <input type="search" name="q" placeholder="Buscar productos…" value="{{ q or '' }}">
+      <button type="submit">Buscar</button>
+    </form>
+    <nav>
+      <a href="/herramientas">Herramientas</a>
+      {% if usuario %}
+        <a href="/facturas">Facturas</a>
+        <a href="/perfil">{{ usuario.username }}</a>
+        {% if usuario.rol == 'admin' %}<a href="/admin">Admin</a>{% endif %}
+        <a href="/logout">Salir</a>
+      {% else %}
+        <a class="boton" href="/login">Ingresar</a>
+      {% endif %}
+    </nav>
+  </header>
+  <main>
+    <div id="mensaje" class="aviso" hidden></div>
+    {% block contenido %}{% endblock %}
+  </main>
+  <footer>CampusShop · laboratorio de seguridad web · solo para uso académico en localhost</footer>
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block titulo %}Mi perfil{% endblock %}
+{% block contenido %}
+<h1>Hola, {{ usuario.username }}</h1>
+<div class="columnas">
+  <section class="panel">
+    <h2>Mis datos</h2>
+    <p><strong>Correo:</strong> {{ usuario.email }}</p>
+    <p><strong>Saldo:</strong> <span id="saldo">${{ '%.2f' % usuario.saldo }}</span></p>
+    {% if usuario.nota %}<p><strong>Nota privada:</strong> {{ usuario.nota }}</p>{% endif %}
+
+    <form class="formulario" method="post" action="/perfil/email">
+      <input type="hidden" name="csrf" value="{{ csrf }}">
+      <label>Nuevo correo <input type="email" name="email" required></label>
+      <button type="submit">Cambiar correo</button>
+    </form>
+  </section>
+
+  <section class="panel">
+    <h2>Cupones</h2>
+    <form id="form-cupon" class="formulario">
+      <label>Código <input name="codigo" placeholder="BIENVENIDA" required></label>
+      <button type="submit">Canjear</button>
+    </form>
+    <p id="resultado-cupon"></p>
+  </section>
+</div>
+{% endblock %}

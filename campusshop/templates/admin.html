@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block titulo %}Administración{% endblock %}
+{% block contenido %}
+<h1>Panel de administración</h1>
+<p class="bandera">{{ flag }}</p>
+
+<section class="panel">
+  <h2>Usuarios</h2>
+  <table>
+    <thead><tr><th>ID</th><th>Usuario</th><th>Correo</th><th>Rol</th><th>Saldo</th></tr></thead>
+    <tbody>
+    {% for u in usuarios %}
+      <tr><td>{{ u.id }}</td><td>{{ u.username }}</td><td>{{ u.email }}</td><td>{{ u.rol }}</td><td>{{ u.saldo }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <h2>Diagnóstico de red</h2>
+  <form class="formulario" method="post" action="/admin/diagnostico">
+    <label>Host o IP <input name="host" value="{{ host or '127.0.0.1' }}" required></label>
+    <button type="submit">Hacer ping</button>
+  </form>
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+  {% if salida %}<pre>{{ salida }}</pre>{% endif %}
+</section>
+{% endblock %}

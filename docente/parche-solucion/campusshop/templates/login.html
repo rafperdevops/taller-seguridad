@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block titulo %}Ingresar{% endblock %}
+{% block contenido %}
+<form class="formulario angosto" method="post" action="/login">
+  <h1>Ingresar</h1>
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+  <label>Usuario <input name="username" autocomplete="username" required></label>
+  <label>Contraseña <input name="password" type="password" autocomplete="current-password" required></label>
+  <button type="submit">Entrar</button>
+</form>
+{% endblock %}

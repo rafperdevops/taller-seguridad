@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block titulo %}Mis facturas{% endblock %}
+{% block contenido %}
+<h1>Mis facturas</h1>
+<table>
+  <thead><tr><th>N.º</th><th>Detalle</th><th>Total</th><th></th></tr></thead>
+  <tbody>
+  {% for f in facturas %}
+    <tr>
+      <td>{{ f.id }}</td>
+      <td>{{ f.detalle }}</td>
+      <td>${{ '%.2f' % f.total }}</td>
+      <td><a href="/api/facturas/{{ f.id }}">Ver JSON</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

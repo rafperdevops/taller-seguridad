@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block titulo %}Herramientas{% endblock %}
+{% block contenido %}
+<h1>Herramientas</h1>
+<div class="columnas">
+  <section class="panel">
+    <h2>Vista previa de enlace</h2>
+    <p>Pega la URL de un producto de otra tienda y te mostramos su contenido.</p>
+    <form id="form-preview" class="formulario">
+      <label>URL <input name="url" placeholder="https://example.com" required></label>
+      <button type="submit">Previsualizar</button>
+    </form>
+    <pre id="resultado-preview"></pre>
+  </section>
+
+  <section class="panel">
+    <h2>Descargas</h2>
+    <ul>
+      {% for a in archivos %}
+      <li><a href="/descargas?f={{ a }}">{{ a }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+</div>
+{% endblock %}

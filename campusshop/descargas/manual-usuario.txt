@@ -1,0 +1,6 @@
+MANUAL DE USUARIO - CampusShop
+==============================
+1. Crea tu cuenta en la caja de la tienda.
+2. Ingresa con tu usuario y contraseña.
+3. Canjea el cupón BIENVENIDA una sola vez para recibir saldo.
+4. Revisa tus facturas en la sección "Facturas".

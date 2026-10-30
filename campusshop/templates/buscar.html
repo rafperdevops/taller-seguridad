@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block titulo %}Buscar{% endblock %}
+{% block contenido %}
+<h1>Resultados para: {{ q|safe }}</h1>
+{% if productos %}
+<div class="grilla">
+  {% for p in productos %}
+  <a class="tarjeta" href="/productos/{{ p.id }}">
+    <h3>{{ p.nombre }}</h3>
+    <p>{{ p.descripcion }}</p>
+    <strong>${{ p.precio }}</strong>
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<p>No encontramos productos.</p>
+{% endif %}
+{% endblock %}

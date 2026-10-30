@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block titulo %}{{ producto.nombre }}{% endblock %}
+{% block contenido %}
+<article class="detalle">
+  <h1>{{ producto.nombre }}</h1>
+  <p>{{ producto.descripcion }}</p>
+  <p class="precio">${{ '%.2f' % producto.precio }}</p>
+</article>
+
+<section>
+  <h2>Reseñas</h2>
+  {% for r in resenas %}
+  <div class="resena">
+    <strong>{{ r.username }}</strong>
+    <p>{{ r.texto }}</p>
+  </div>
+  {% else %}
+  <p>Aún no hay reseñas.</p>
+  {% endfor %}
+
+  {% if usuario %}
+  <form class="formulario" method="post" action="/productos/{{ producto.id }}/resenas">
+    <label>Tu reseña <textarea name="texto" rows="3" required></textarea></label>
+    <button type="submit">Publicar</button>
+  </form>
+  {% else %}
+  <p><a href="/login">Ingresa</a> para dejar una reseña.</p>
+  {% endif %}
+</section>
+{% endblock %}
